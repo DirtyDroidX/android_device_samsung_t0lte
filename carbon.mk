@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2012 The CyanogenMod Project
-# Copyright (C) 2012 The LiquidSmooth Project
+# Copyright (C) 2012 The carbon Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,18 +22,18 @@ PRODUCT_RELEASE_NAME := t0lte
 $(call inherit-product, device/samsung/t0lte/full_t0lte.mk)
 
 # phone
-$(call inherit-product, vendor/liquid/config/common_phone.mk)
+$(call inherit-product, vendor/carbon/config/common_phone.mk)
 
 # telephony
-$(call inherit-product, vendor/liquid/config/common_gsm.mk)
+$(call inherit-product, vendor/carbon/config/common_gsm.mk)
 
 # product
 PRODUCT_DEVICE := t0lte
 PRODUCT_BRAND := samsung
-PRODUCT_NAME := liquid_t0lte
+PRODUCT_NAME := carbon_t0lte
 PRODUCT_MODEL := GT-N7105
 PRODUCT_MANUFACTURER := Samsung
-PRODUCT_PROPERTY_OVERRIDES += ro.buildzipid=liquid.t0lte.$(shell date +%m%d%y).$(shell date +%H%M%S)
+PRODUCT_PROPERTY_OVERRIDES += ro.buildzipid=carbon.t0lte.$(shell date +%m%d%y).$(shell date +%H%M%S)
 
 # override
 PRODUCT_BUILD_PROP_OVERRIDES += \
