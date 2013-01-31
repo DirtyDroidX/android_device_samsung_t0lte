@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2012 The CyanogenMod Project
-# Copyright (C) 2012 The LiquidSmooth Project
+# Copyright (C) 2012 The Carbon Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/samsung/t0lte/t0lte.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := liquid_t0lte
+PRODUCT_NAME := carbon_t0lte
 PRODUCT_DEVICE := t0lte
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
