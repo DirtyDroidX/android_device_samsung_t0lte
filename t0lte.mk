@@ -23,6 +23,34 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
+# overrides
+PRODUCT_PROPERTY_OVERRIDES += \
+    keyguard.no_require_sim=true \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.com.google.clientidbase=android-google \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dateformat=MM-dd-yyyy \
+    ro.com.android.dataroaming=false
+
+# tools
+PRODUCT_PACKAGES += \
+    e2fsck \
+    mke2fs \
+    tune2fs \
+    nano
+	
+# Openssh
+PRODUCT_PACKAGES += \
+    scp \
+    sftp \
+    ssh \
+    sshd \
+    sshd_config \
+    ssh-keygen \
+    start-ssh
+
 # Init files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/lpm.rc:root/lpm.rc \
@@ -43,9 +71,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/80cfw:system/etc/init.d/80cfw
 
-# Product specific Packages
-PRODUCT_PACKAGES += \
-    GalaxyNote2Settings
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -54,6 +79,12 @@ PRODUCT_PACKAGES += \
     libnfc_jni \
     Nfc \
     Tag
+
+# Extras
+PRODUCT_PACKAGES += \
+	Torch \
+	DSPManager \
+	ELELauncher
 
 PRODUCT_COPY_FILES += \
     packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
@@ -89,3 +120,9 @@ PRODUCT_COPY_FILES += \
 # Include common makefile
 $(call inherit-product, device/samsung/smdk4412-common/common.mk)
 $(call inherit-product-if-exists, vendor/samsung/t0lte/t0lte-vendor.mk)
+
+# Call in the ExtinctionLevelEvent
+$(call inherit-product-if-exists, vendor/event/ele/config/common.mk)
+$(call inherit-product-if-exists, vendor/event/ele/t0lte/common.mk)
+$(call inherit-product-if-exists, vendor/google/ele/config/common.mk)
+

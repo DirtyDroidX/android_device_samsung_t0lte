@@ -19,21 +19,20 @@
 PRODUCT_RELEASE_NAME := t0lte
 
 # device
-$(call inherit-product, device/samsung/t0lte/full_t0lte.mk)
+$(call inherit-product, device/samsung/t0lte/ele_t0lte.mk)
 
 # phone
-$(call inherit-product, vendor/carbon/config/common_phone.mk)
+$(call inherit-product, vendor/event/ele/t0tle/common_phone.mk)
 
 # telephony
-$(call inherit-product, vendor/carbon/config/common_gsm.mk)
+$(call inherit-product, vendor/event/ele/t0lte/gsm.mk)
 
 # product
 PRODUCT_DEVICE := t0lte
 PRODUCT_BRAND := samsung
-PRODUCT_NAME := carbon_t0lte
+PRODUCT_NAME := ele_t0lte
 PRODUCT_MODEL := GT-N7105
 PRODUCT_MANUFACTURER := Samsung
-PRODUCT_PROPERTY_OVERRIDES += ro.buildzipid=carbon.t0lte.$(shell date +%m%d%y).$(shell date +%H%M%S)
 
 # override
 PRODUCT_BUILD_PROP_OVERRIDES += \
