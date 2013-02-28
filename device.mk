@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2012 The CyanogenMod Project
-# Copyright (C) 2012 The Carbon Project
+# Copyright 2012 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,10 +21,10 @@ PRODUCT_RELEASE_NAME := t0lte
 $(call inherit-product, device/samsung/t0lte/ele_t0lte.mk)
 
 # phone
-$(call inherit-product, vendor/event/ele/t0tle/common_phone.mk)
+$(call inherit-product, vendor/event/ele/config/common_phone.mk)
 
 # telephony
-$(call inherit-product, vendor/event/ele/t0lte/gsm.mk)
+$(call inherit-product, vendor/event/ele/config/gsm.mk)
 
 # product
 PRODUCT_DEVICE := t0lte
@@ -33,6 +32,12 @@ PRODUCT_BRAND := samsung
 PRODUCT_NAME := ele_t0lte
 PRODUCT_MODEL := GT-N7105
 PRODUCT_MANUFACTURER := Samsung
+
+# Extras
+PRODUCT_PACKAGES += \
+	Torch \
+	DSPManager \
+	ELELauncher
 
 # override
 PRODUCT_BUILD_PROP_OVERRIDES += \
@@ -43,3 +48,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_VERSION_TAGS=release-keys \
     PRIVATE_BUILD_DESC="t0ltexx-user 4.1.2 JZO54K N7105XXDLL4 release-keys" \
     BUILD_FINGERPRINT="samsung/t0ltexx/t0lte:4.1.2/JZO54K/N7105XXDLL4:user/release-keys"
+
+# Call in the ExtinctionLevelEvent
+$(call inherit-product-if-exists, vendor/event/ele/config/common.mk)
+$(call inherit-product-if-exists, vendor/event/ele/t0lte/common.mk)
