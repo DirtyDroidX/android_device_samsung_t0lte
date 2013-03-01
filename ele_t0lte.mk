@@ -16,6 +16,21 @@
 
 LOCAL_PATH := device/samsung/t0lte
 
+# overlay
+PRODUCT_PACKAGE_OVERLAYS += vendor/event/ele/overlay/dictionaries
+
+# GSM APN list
+PRODUCT_COPY_FILES += \
+    vendor/event/ele/prebuilt/system/etc/apns-conf.xml:system/etc/apns-conf.xml
+
+# GSM SPN overrides list
+PRODUCT_COPY_FILES += \
+    vendor/event/ele/prebuilt/system/etc/spn-conf.xml:system/etc/spn-conf.xml
+
+# sip/voip
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # audio
@@ -30,7 +45,6 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
-
 
 # overrides
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -89,6 +103,11 @@ PRODUCT_PACKAGES += \
     Nfc \
     Tag
 
+PRODUCT_PACKAGES += \
+	Torch \
+	DSPManager \
+	ELELauncher \
+	Stk
 
 PRODUCT_COPY_FILES += \
     packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
@@ -121,7 +140,18 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
+
+# product
+PRODUCT_DEVICE := t0lte
+PRODUCT_BRAND := samsung
+PRODUCT_NAME := ele_t0lte
+PRODUCT_MODEL := GT-N7105
+PRODUCT_MANUFACTURER := Samsung
+
 # Include common makefile
 $(call inherit-product, device/samsung/smdk4412-common/common.mk)
 $(call inherit-product-if-exists, vendor/samsung/t0lte/t0lte-vendor.mk)
+
+# Call in the ExtinctionLevelEvent
+$(call inherit-product-if-exists, vendor/event/ele/config/common.mk)
 

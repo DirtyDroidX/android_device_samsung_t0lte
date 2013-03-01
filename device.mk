@@ -26,29 +26,19 @@ $(call inherit-product, vendor/event/ele/config/common_phone.mk)
 # telephony
 $(call inherit-product, vendor/event/ele/config/gsm.mk)
 
-# product
-PRODUCT_DEVICE := t0lte
-PRODUCT_BRAND := samsung
-PRODUCT_NAME := ele_t0lte
-PRODUCT_MODEL := GT-N7105
-PRODUCT_MANUFACTURER := Samsung
+# themes
+$(call inherit-product, vendor/event/ele/config/themes_common.mk
 
-# Extras
-PRODUCT_PACKAGES += \
-	Torch \
-	DSPManager \
-	ELELauncher
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ele.version=ELENote2
 
 # override
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_NUMBER=N7105XXDLL4 \
-    PRODUCT_NAME=t0lte \
+    PRODUCT_NAME=ele_t0lte \
     TARGET_DEVICE=t0lte \
     TARGET_BUILD_TYPE=user \
     BUILD_VERSION_TAGS=release-keys \
     PRIVATE_BUILD_DESC="t0ltexx-user 4.1.2 JZO54K N7105XXDLL4 release-keys" \
     BUILD_FINGERPRINT="samsung/t0ltexx/t0lte:4.1.2/JZO54K/N7105XXDLL4:user/release-keys"
 
-# Call in the ExtinctionLevelEvent
-$(call inherit-product-if-exists, vendor/event/ele/config/common.mk)
-$(call inherit-product-if-exists, vendor/event/ele/t0lte/common.mk)
